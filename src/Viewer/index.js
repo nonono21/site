@@ -61,7 +61,6 @@ export default class Viewer extends Component {
 
 
 
-        engine.hideLoadingUI();
 
 
         engine.runRenderLoop(() => {

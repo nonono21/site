@@ -10,14 +10,44 @@ import BabylonScene from '../BabylonScene/'; // import the component above linki
 
 
 
+
+
+
+
+
 export default class Viewer extends Component {
 
     
     onSceneMount = (e) => {
 
+
+
+    
+
+          
+
         
         const { canvas, scene, engine } = e;
 
+        function CustomLoadingScreen( /* variables needed, for example:*/ text) {
+            //init the loader
+            this.loadingUIText = text;
+          }
+          CustomLoadingScreen.prototype.displayLoadingUI = function() {
+            console.log(this.loadingUIText);
+
+          };
+          CustomLoadingScreen.prototype.hideLoadingUI = function() {
+            console.log("Loaded!");
+
+          };
+        
+          
+        var loadingScreen = new CustomLoadingScreen("I'm loading!!");
+        // replace the default loading screen
+        engine.loadingScreen = loadingScreen;
+        // show the loading screen
+        engine.displayLoadingUI();
         
 
         // This creates and positions a free camera (non-mesh)
@@ -36,21 +66,16 @@ export default class Viewer extends Component {
         //  sphere.position.y = 1;
         // Our built-in 'ground' shape. Params: name, width, depth, subdivs, scene
         const ground = BABYLON.Mesh.CreateGround("ground1", 6, 6, 2, scene);
-
-     
-
-
-
-
         
-
+        // Loader GLTF
         BABYLON.SceneLoader.ImportMesh(
             "",
             "",
             "bab.gltf",
             scene,
         );
-
+        
+        //Loader glb anim
         BABYLON.SceneLoader.Append("", "bab.glb", scene, function (newMeshes) {
         scene.activeCamera = null;
         scene.createDefaultCameraOrLight(true);
@@ -63,19 +88,26 @@ export default class Viewer extends Component {
 
 
 
+
+
+
+
         engine.runRenderLoop(() => {
             if (scene) {
                 scene.render();
+
             }
         });
+    /* Use this in your actual scene to remove the loading screen instead of a timer
+    -------------------------------------------------------------------------------------------
+    scene.executeWhenReady(function () { //When everything is done loading
+        engine.hideLoadingUI(); //Run our loading screen fadeout function
+    }); 
+    ----------------------------------------------------------------------------------------------
+    */
     }
 
-
-
-
-
-    render() {       
-        
+    render() {     
         return (
              <div>
                  rfgd

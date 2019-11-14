@@ -1,14 +1,24 @@
 import React, { Component } from 'react';
 import * as BABYLON from 'babylonjs';
 import 'babylonjs-loaders';
+import * as GUI from 'babylonjs-gui';
+
 
 
 
 import BabylonScene from '../BabylonScene/'; // import the component above linking to file we just created.
 
+
+
 export default class Viewer extends Component {
+
+    
     onSceneMount = (e) => {
+
+        
         const { canvas, scene, engine } = e;
+
+        
 
         // This creates and positions a free camera (non-mesh)
         const camera = new BABYLON.FreeCamera("camera1", new BABYLON.Vector3(0, 5, -10), scene);
@@ -21,21 +31,18 @@ export default class Viewer extends Component {
         // Default intensity is 1. Let's dim the light a small amount
         light.intensity = 0.9;
         // Our built-in 'sphere' shape. Params: name, subdivs, size, scene
-     //   const sphere = BABYLON.Mesh.CreateSphere("sphere1", 16, 2, scene);
+        //   const sphere = BABYLON.Mesh.CreateSphere("sphere1", 16, 2, scene);
         // Move the sphere upward 1/2 its height
-      //  sphere.position.y = 1;
+        //  sphere.position.y = 1;
         // Our built-in 'ground' shape. Params: name, width, depth, subdivs, scene
         const ground = BABYLON.Mesh.CreateGround("ground1", 6, 6, 2, scene);
 
-        //    const test = BABYLON.SceneLoader.ImportMesh(
-        //        "",
-        //        "",
-        //        "bab.gltf",
-        //        scene,
-        //        function(m) {
-        //          console.log(m);
-        //        }
-        //      );
+     
+
+
+
+
+        
 
         BABYLON.SceneLoader.ImportMesh(
             "",
@@ -51,7 +58,11 @@ export default class Viewer extends Component {
     });
 
 
-        console.log(BABYLON);
+
+
+
+        engine.hideLoadingUI();
+
 
         engine.runRenderLoop(() => {
             if (scene) {
@@ -60,7 +71,12 @@ export default class Viewer extends Component {
         });
     }
 
-    render() {               
+
+
+
+
+    render() {       
+        
         return (
              <div>
                  rfgd

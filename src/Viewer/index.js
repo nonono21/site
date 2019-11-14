@@ -51,7 +51,7 @@ export default class Viewer extends Component {
         
 
         // This creates and positions a free camera (non-mesh)
-        const camera = new BABYLON.FreeCamera("camera1", new BABYLON.Vector3(0, 5, -10), scene);
+        const camera = new BABYLON.FreeCamera("camera1", new BABYLON.Vector3(0, 0, 0), scene);
         // This targets the camera to scene origin
         camera.setTarget(BABYLON.Vector3.Zero());
         // This attaches the camera to the canvas
@@ -76,7 +76,7 @@ export default class Viewer extends Component {
         );
         
         //Loader glb anim
-        BABYLON.SceneLoader.Append("", "bab.glb", scene, function (newMeshes) {
+        BABYLON.SceneLoader.Append("", "scene.glb", scene, function () {
         scene.activeCamera = null;
         scene.createDefaultCameraOrLight(true);
         scene.activeCamera.attachControl(canvas, false);
@@ -114,7 +114,7 @@ export default class Viewer extends Component {
 
                  totogro
                  totogro
-
+jojo
                 <BabylonScene onSceneMount={this.onSceneMount} />
                 totogro
                 totogro

@@ -42,11 +42,9 @@ export default class Viewer extends Component {
 
         // This creates a light, aiming 0,1,0 - to the sky (non-mesh)
         const light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(-2, 1, 0), scene);
-        light.diffuse = new BABYLON.Color3(1, 0, 0);
         light.specular = new BABYLON.Color3(0, 1, 0);
         light.groundColor = new BABYLON.Color3(0, 1, 0);
         // Default intensity is 1. Let's dim the light a small amount
-        light.intensity = 2.5;
         // Our built-in 'ground' shape. Params: name, width, depth, subdivs, scene
         
         // Loader GLTF
@@ -80,12 +78,13 @@ export default class Viewer extends Component {
         console.log(test);
     });
 
+    
+
 
 
 
         scene.activeCamera = camera;
-        scene.createDefaultCameraOrLight(true);
-        scene.activeCamera.attachControl(canvas, false);
+         scene.activeCamera.attachControl(canvas, false);
 
         
 	
@@ -100,7 +99,7 @@ export default class Viewer extends Component {
 
 
 
-    scene.clearColor = new BABYLON.Color4(0, 0.5, 0.3, 0.1 ,0.1);
+         scene.clearColor.copyFromFloats(0, 0, 0, 0);
 
 
 

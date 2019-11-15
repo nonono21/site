@@ -2,17 +2,7 @@ import React, { Component } from 'react';
 import * as BABYLON from 'babylonjs';
 import 'babylonjs-loaders';
 import * as GUI from 'babylonjs-gui';
-
-
-
-
 import BabylonScene from '../BabylonScene/'; // import the component above linking to file we just created.
-
-
-
-
-
-
 
 
 export default class Viewer extends Component {
@@ -20,13 +10,6 @@ export default class Viewer extends Component {
     
     onSceneMount = (e) => {
 
-
-
-    
-
-          
-
-        
         const { canvas, scene, engine } = e;
 
         function CustomLoadingScreen( /* variables needed, for example:*/ text) {
@@ -51,50 +34,77 @@ export default class Viewer extends Component {
         
 
         // This creates and positions a free camera (non-mesh)
-        const camera = new BABYLON.FreeCamera("camera1", new BABYLON.Vector3(0, 0, 0), scene);
+        var camera = new BABYLON.ArcRotateCamera("camera", 0, 0, 10, new BABYLON.Vector3(0, 0, 0), scene);
         // This targets the camera to scene origin
-        camera.setTarget(BABYLON.Vector3.Zero());
         // This attaches the camera to the canvas
         camera.attachControl(canvas, true);
+        camera.setPosition(new BABYLON.Vector3(0, 2, 5));
+
         // This creates a light, aiming 0,1,0 - to the sky (non-mesh)
         const light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(0, 1, 0), scene);
         // Default intensity is 1. Let's dim the light a small amount
         light.intensity = 0.9;
-        // Our built-in 'sphere' shape. Params: name, subdivs, size, scene
-        //   const sphere = BABYLON.Mesh.CreateSphere("sphere1", 16, 2, scene);
-        // Move the sphere upward 1/2 its height
-        //  sphere.position.y = 1;
         // Our built-in 'ground' shape. Params: name, width, depth, subdivs, scene
-        const ground = BABYLON.Mesh.CreateGround("ground1", 6, 6, 2, scene);
         
         // Loader GLTF
-        BABYLON.SceneLoader.ImportMesh(
+        var test = BABYLON.SceneLoader.Append(
             "",
-            "",
-            "bab.gltf",
-            scene,
+            "bab.glb",
+            scene
         );
+        var anchor = new BABYLON.AbstractMesh("anchor", scene);
+
+
+
+        var helper = scene.createDefaultEnvironment();
+        helper.setMainColor(BABYLON.Color3.Gray());
+
+
+        var manager = new GUI.GUI3DManager(scene);
+
+
+
+        var button = new GUI.HolographicButton("reset");
+        manager.addControl(button);
         
-        //Loader glb anim
-        BABYLON.SceneLoader.Append("", "scene.glb", scene, function () {
-        scene.activeCamera = null;
-        scene.createDefaultCameraOrLight(true);
-        scene.activeCamera.attachControl(canvas, false);
+    manager.addControl(button);
+    button.linkToTransformNode(anchor);
+    button.position.z = 2;
+    button.position.x = 0;
+    button.position.y = 0;
+
+    button.onPointerUpObservable.add(function(){
+        console.log(scene);
     });
 
 
 
 
+        scene.activeCamera = camera;
+        scene.createDefaultCameraOrLight(true);
+        scene.activeCamera.attachControl(canvas, false);
+
+        
+	
+
+	
 
 
 
 
+
+
+
+
+
+    scene.clearColor = new BABYLON.Color4(0, 0.5, 0.3, 0.1 ,0.1);
 
 
 
         engine.runRenderLoop(() => {
             if (scene) {
                 scene.render();
+                
 
             }
         });
@@ -110,23 +120,7 @@ export default class Viewer extends Component {
     render() {     
         return (
              <div>
-                 rfgd
-
-                 totogro
-                 totogro
-jojo
-                <BabylonScene onSceneMount={this.onSceneMount} />
-                totogro
-                totogro
-                totogro
-                totogro
-                totogro
-                totogro
-                totogro
-
-                totogro
-                totogro
-
+                 <BabylonScene onSceneMount={this.onSceneMount} />
              </div>
         )
     }

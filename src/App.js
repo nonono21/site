@@ -2,17 +2,14 @@ import React, { Component } from 'react';
 import './App.css';
 
 import Viewer from './Viewer/'; 
+import ViewerBg from './components/ViewerBackground'; 
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-           <h1>TOTa</h1>
-        <h1>TOTO</h1>   <h1>TOTa</h1>
-        <h1>TOTO</h1>
+      <ViewerBg />  
       <Viewer />
-        <h1>TOTa</h1>
-        <h1>TOTO</h1>
       </div>
     );
   }

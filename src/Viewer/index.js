@@ -38,7 +38,12 @@ export default class Viewer extends Component {
         // This targets the camera to scene origin
         // This attaches the camera to the canvas
         camera.attachControl(canvas, true);
-        camera.setPosition(new BABYLON.Vector3(0, 2, 5));
+        camera.setPosition(new BABYLON.Vector3(0, 2, 15));
+
+        camera.useAutoRotationBehavior = true;
+        camera.autoRotationBehavior.idleRotationSpeed = 0.5;
+        camera.zoomStopsAnimation = false;  
+
 
         // This creates a light, aiming 0,1,0 - to the sky (non-mesh)
         const light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(-2, 1, 0), scene);
@@ -56,11 +61,6 @@ export default class Viewer extends Component {
         var anchor = new BABYLON.AbstractMesh("anchor", scene);
 
 
-
-
-
-
-
         var manager = new GUI.GUI3DManager(scene);
 
 
@@ -68,55 +68,35 @@ export default class Viewer extends Component {
         var button = new GUI.HolographicButton("reset");
         manager.addControl(button);
         
-    manager.addControl(button);
-    button.linkToTransformNode(anchor);
-    button.position.z = 2;
-    button.position.x = 0;
-    button.position.y = 0;
+        manager.addControl(button);
+        button.linkToTransformNode(anchor);
+        button.position.z = 2;
+        button.position.x = 0;
+        button.position.y = 0;
 
-    button.onPointerUpObservable.add(function(){
-        console.log(test);
-    });
-
-    
-
-
-
+        button.onPointerUpObservable.add(function(){
+            console.log(test);
+        });
 
         scene.activeCamera = camera;
-         scene.activeCamera.attachControl(canvas, false);
-
-        
-	
-
-	
-
-
-
-
-
-
-
-
-
-         scene.clearColor.copyFromFloats(0, 0, 0, 0);
-
-
+        scene.activeCamera.attachControl(canvas, false);
+        scene.clearColor.copyFromFloats(0, 0, 0, 0);
 
         engine.runRenderLoop(() => {
             if (scene) {
                 scene.render();
-                
-
             }
         });
-    /* Use this in your actual scene to remove the loading screen instead of a timer
-    -------------------------------------------------------------------------------------------
-    scene.executeWhenReady(function () { //When everything is done loading
-        engine.hideLoadingUI(); //Run our loading screen fadeout function
-    }); 
-    ----------------------------------------------------------------------------------------------
-    */
+
+
+         /* Use this in your actual scene to remove the loading screen instead of a timer
+         -------------------------------------------------------------------------------------------
+         scene.executeWhenReady(function () { //When everything is done loading
+             engine.hideLoadingUI(); //Run our loading screen fadeout function
+         }); 
+         ----------------------------------------------------------------------------------------------
+         */
+
     }
 
     render() {     

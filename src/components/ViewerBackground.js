@@ -7,10 +7,11 @@ class ViewerBg extends Component {
 
     render() {
         const styles = {
-                 background: 'red',
                 position: 'absolute',
-                fontSize: 100,
+                fontSize: 200,
                 zIndex: '-2',
+                left : '50%',
+                transform: 'translateX(-50%)',
                 display: 'block',        };
 
         return <div style={styles}>ok ok</div>

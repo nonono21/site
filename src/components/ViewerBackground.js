@@ -14,7 +14,7 @@ class ViewerBg extends Component {
                 transform: 'translateX(-50%)',
                 display: 'block',        };
 
-        return <div style={styles}>ok ok</div>
+        return <div style={styles}>ok</div>
     }
 
 

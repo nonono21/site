@@ -34,11 +34,11 @@ export default class Viewer extends Component {
         
 
         // This creates and positions a free camera (non-mesh)
-        var camera = new BABYLON.ArcRotateCamera("camera", 0, 0, 10, new BABYLON.Vector3(0, 0, 0), scene);
+        var camera = new BABYLON.ArcRotateCamera("camera", 0, 0, 10, new BABYLON.Vector3(0, 5, 0), scene);
         // This targets the camera to scene origin
         // This attaches the camera to the canvas
         camera.attachControl(canvas, true);
-        camera.setPosition(new BABYLON.Vector3(0, 2, 15));
+        camera.setPosition(new BABYLON.Vector3(-10, 5,8));
 
         camera.useAutoRotationBehavior = true;
         camera.autoRotationBehavior.idleRotationSpeed = 0.5;

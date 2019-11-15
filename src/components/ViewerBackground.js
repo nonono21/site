@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { directive } from '@babel/types';
 
 class ViewerBg extends Component {
 
@@ -12,11 +13,17 @@ class ViewerBg extends Component {
                 zIndex: '-2',
                 left : '50%',
                 transform: 'translateX(-50%)',
-                display: 'block',        };
+                display: 'block',        
+            };
 
-        return <div style={styles}>ok</div>
-    }
+        return ( <div>
+                     <div style={styles}>ok</div>
+                     <h2>boomer</h2>
 
+                 </div>
+
+                );
+             }       
 
 }
 

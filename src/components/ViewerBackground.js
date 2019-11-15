@@ -2,8 +2,15 @@ import React, { Component } from 'react';
 
 class ViewerBg extends Component {
 
+ 
+
+
     render() {
-        return <div>ok ok</div>
+        const styles = {
+            background: 'red',
+        };
+
+        return <div style={styles}>ok ok</div>
     }
 
 

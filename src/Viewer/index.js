@@ -41,9 +41,12 @@ export default class Viewer extends Component {
         camera.setPosition(new BABYLON.Vector3(0, 2, 5));
 
         // This creates a light, aiming 0,1,0 - to the sky (non-mesh)
-        const light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(0, 1, 0), scene);
+        const light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(-2, 1, 0), scene);
+        light.diffuse = new BABYLON.Color3(1, 0, 0);
+        light.specular = new BABYLON.Color3(0, 1, 0);
+        light.groundColor = new BABYLON.Color3(0, 1, 0);
         // Default intensity is 1. Let's dim the light a small amount
-        light.intensity = 0.9;
+        light.intensity = 2.5;
         // Our built-in 'ground' shape. Params: name, width, depth, subdivs, scene
         
         // Loader GLTF
@@ -56,8 +59,8 @@ export default class Viewer extends Component {
 
 
 
-        var helper = scene.createDefaultEnvironment();
-        helper.setMainColor(BABYLON.Color3.Gray());
+
+
 
 
         var manager = new GUI.GUI3DManager(scene);
@@ -74,7 +77,7 @@ export default class Viewer extends Component {
     button.position.y = 0;
 
     button.onPointerUpObservable.add(function(){
-        console.log(scene);
+        console.log(test);
     });
 
 
